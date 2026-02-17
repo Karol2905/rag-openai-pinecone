@@ -1,0 +1,19 @@
+Retrieval-Augmented Generation (RAG) is an advanced architecture that enhances large language models by combining retrieval mechanisms with generative capabilities.
+
+Traditional large language models generate responses based only on the data they were trained on. This can lead to hallucinations or outdated information.
+
+RAG solves this problem by retrieving relevant documents from an external knowledge base before generating a response. The system first converts documents into vector embeddings and stores them in a vector database.
+
+When a user submits a query, the system converts the query into a vector and searches for the most similar document chunks using cosine similarity. The retrieved context is then provided to the language model to generate a more accurate and grounded answer.
+
+Vector databases such as Pinecone are commonly used in RAG systems because they enable efficient similarity search across large collections of embeddings.
+
+Embeddings are numerical vector representations of text that capture semantic meaning. In this project, we use HuggingFace embeddings to generate 384-dimensional vectors.
+
+The overall RAG pipeline consists of the following steps:
+1. Document loading
+2. Text chunking
+3. Embedding generation
+4. Vector storage
+5. Similarity retrieval
+6. Context-aware generation
