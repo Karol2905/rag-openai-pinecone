@@ -5,10 +5,10 @@
 
 This project implements a modern Retrieval-Augmented Generation (RAG) system using:
 
-- **HuggingFace Embeddings** (all-MiniLM-L6-v2)
-- **Pinecone** as vector database
-- **Google Gemini** as the Large Language Model (LLM)
-- **LangChain (LCEL)** for orchestration
+- HuggingFace Embeddings (all-MiniLM-L6-v2)
+- Pinecone (vector database)
+- Google Gemini (LLM)
+- LangChain (LCEL architecture)
 
 The system enhances LLM responses by retrieving relevant contextual information from a vector database before generating an answer.
 
@@ -16,13 +16,13 @@ The system enhances LLM responses by retrieving relevant contextual information 
 
 ## 🧠 What is RAG?
 
-Retrieval-Augmented Generation (RAG) is an architecture that improves large language models by:
+Retrieval-Augmented Generation (RAG) is an architecture that improves LLM performance by:
 
-1. Retrieving relevant documents from an external knowledge base.
-2. Injecting that context into the LLM.
-3. Generating grounded, more accurate responses.
+1. Retrieving relevant information from an external knowledge base.
+2. Injecting retrieved context into the LLM.
+3. Generating grounded and context-aware responses.
 
-Unlike traditional LLMs, RAG reduces hallucinations and allows dynamic knowledge updates.
+This reduces hallucinations and allows dynamic knowledge updates.
 
 ---
 
@@ -34,12 +34,12 @@ Unlike traditional LLMs, RAG reduces hallucinations and allows dynamic knowledge
 2. Text Chunking
 3. Embedding Generation (384-dimensional vectors)
 4. Storage in Pinecone (Cosine Similarity)
-5. Retrieval of Top-K Relevant Chunks
-6. Context-aware Answer Generation with Gemini
+5. Similarity Retrieval
+6. Context-Aware Generation with Gemini
 
 ### Diagram
 
-User → Retriever (Pinecone) → Context → Gemini LLM → Response
+User → Retriever (Pinecone) → Retrieved Context → Gemini LLM → Response
 
 ---
 
@@ -53,16 +53,34 @@ User → Retriever (Pinecone) → Context → Gemini LLM → Response
 
 ---
 
+## 📂 Project Structure
+
+````
+
+rag-project/
+│
+├── ingest.py        # Index documents into Pinecone
+├── query.py         # Query the RAG system
+├── data/
+│   └── sample_document.txt
+├── requirements.txt
+├── .env.example
+└── README.md
+
+````
+
+---
+
 ## 📦 Installation
 
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone <your_repo_link>
+git clone <repo_link>
 cd rag-project
 ````
 
-### 2️⃣ Create virtual environment (recommended)
+### 2️⃣ Create virtual environment
 
 ```bash
 python3.11 -m venv venv
@@ -106,13 +124,13 @@ This will:
 
 ---
 
-### Step 2 – Ask questions
+### Step 2 – Query the system
 
 ```bash
 python query.py
 ```
 
-Example:
+Example question:
 
 ```
 What is RAG?
@@ -122,39 +140,36 @@ What is RAG?
 
 ## 📊 Why Pinecone?
 
-Pinecone allows efficient similarity search across high-dimensional embeddings, enabling scalable retrieval in real-world AI systems.
+Pinecone enables efficient similarity search across high-dimensional embeddings, making retrieval scalable and fast.
 
 ---
 
 ## 📚 Why HuggingFace Embeddings?
 
-We use `all-MiniLM-L6-v2`:
+We use `all-MiniLM-L6-v2` because:
 
-* 384-dimensional vectors
-* Lightweight
-* Efficient
-* No API cost
+* It generates 384-dimensional vectors
+* It is lightweight and efficient
+* It requires no API cost
 
 ---
 
 ## 🤖 Why Gemini?
 
-Gemini generates context-aware responses using the retrieved document chunks, improving factual accuracy compared to standalone LLMs.
+Gemini generates context-aware responses based on retrieved documents, improving accuracy compared to standalone LLMs.
 
 ---
 
 ## 🎯 Key Learning Outcomes
 
-* Understanding of vector embeddings
-* Semantic similarity search
-* Vector databases (Pinecone)
-* Modern LangChain LCEL pipelines
-* Building production-style RAG systems
+* Understanding semantic embeddings
+* Vector similarity search
+* Vector databases
+* Retrieval-Augmented Generation
+* Modern LangChain architecture (LCEL)
 
 ---
 
 ## 📌 Conclusion
 
 This project demonstrates a complete end-to-end RAG pipeline integrating retrieval and generation to enhance LLM responses with external knowledge.
-
-```
